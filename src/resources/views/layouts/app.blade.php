@@ -16,5 +16,8 @@
 
     @include('layouts.footer')
     @include('layouts.partials.scripts')
+    
+    <!-- Renderiza scripts específicos de páginas -->
+    @stack('scripts')
 </body>
 </html>

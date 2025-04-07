@@ -1,0 +1,7 @@
+<style>
+    .map-container {
+        height: 300px;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+</style>

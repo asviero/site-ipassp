@@ -41,7 +41,7 @@
 
             <!-- Campo de pesquisa -->
             <div class="search-box">
-                <input type="text" placeholder="Pesquisa no site..." 
+                <input type="text" placeholder="Pesquisa no site..."
                     class="form-control rounded-pill ps-4" style="width: 250px;">
                 <span class="search-icon">🔍</span>
             </div>
