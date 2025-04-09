@@ -3,21 +3,22 @@
     <div class="container-fluid text-center bg-dark text-white py-3 px-0">
         <div class="row">
             <div class="col-md-4">
-                <h5 class="fw-bold">Endereço</h5>
+                <h5 class="fw-bold"><i class="bi bi-geo-alt me-2"></i>Endereço</h5>
                 <p>
-                    <i class="bi bi-geo-alt-fill"></i> Rua André Marques, 820 - Centro<br>
+                    Rua André Marques, 820, sala 102 - Centro<br>
                     Santa Maria/RS - CEP 97010-041
                 </p>
             </div>
+            
             <div class="col-md-4">
-                <h5 class="fw-bold">Horário de Atendimento</h5>
+                <h5 class="fw-bold"><i class="bi bi-clock me-2"></i>Horário de Atendimento</h5>
                 <p>Segunda a Sexta: 08h às 14h</p>
             </div>
+            
             <div class="col-md-4">
-                <h5 class="fw-bold">Telefone</h5>
-                <p>
-                    <i class="bi bi-telephone-fill"></i> (55) 3220-0378
-                </p>
+                <h5 class="fw-bold"><i class="bi bi-telephone me-2"></i>Contato</h5>
+                <p><i class="bi bi-phone me-2"></i> (55) 3220-0378</p>
+                <p><i class="bi bi-envelope me-2"></i> contato@ipasspsm.net</p>
             </div>
         </div>
     </div>

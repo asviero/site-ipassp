@@ -3,27 +3,25 @@
 <header class="navbar-custom shadow-sm">
     <div class="container">
         <!-- Linha superior -->
-        <div class="d-flex justify-content-between align-items-center py-2">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-2">
             <!-- Logo -->
-            <a href="#" class="d-flex align-items-center">
-                <img src="{{ asset('images/brasao-sm.png') }}" alt="Logo" class="h-16">
-            </a>
-            
-            <!-- Título central -->
-            <div class="text-center">
-                <span class="fw-semibold text-primary">Instituto de Previdência e Assistência à Saúde dos Servidores Públicos Municipais de Santa Maria</span>
+            <div class="d-flex align-items-center mb-2 mb-md-0">
+                <a href="#" class="me-3">
+                    <img src="{{ asset('images/brasao-sm.png') }}" alt="Logo" style="height: 3rem;">
+                </a>
+                <span class="fw-semibold text-primary d-none d-md-block">IPASSP-SM</span>
             </div>
             
             <!-- Links rápidos -->
             <div class="d-flex gap-3">
                 <a href="#" class="text-decoration-none text-primary">
-                    <span class="me-1">🔍</span> Transparência
+                    <i class="bi bi-search me-1"></i> Transparência
                 </a>
                 <a href="#" class="text-decoration-none text-primary">
-                    <span class="me-1">📞</span> Ouvidoria
+                    <span class="bi bi-telephone me-1"></span> Ouvidoria
                 </a>
                 <a href="#" class="text-decoration-none text-primary">
-                    <span class="me-1">ℹ️</span> Acesso à Informação
+                    <span class="bi bi-info-circle me-1"></span> Acesso à Informação
                 </a>
             </div>
         </div>
@@ -41,7 +39,7 @@
 
             <!-- Campo de pesquisa -->
             <div class="search-box">
-                <input type="text" placeholder="Pesquisa no site..."
+                <input type="text" placeholder="  Pesquisa no site..."
                     class="form-control rounded-pill ps-4" style="width: 250px;">
                 <span class="search-icon">🔍</span>
             </div>
