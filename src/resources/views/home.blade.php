@@ -13,15 +13,26 @@
                 <div id="newsCarousel" class="carousel slide mt-4 mb-4" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($news as $index => $item)
-                            <div class="carousel-item @if($index === 0) active @endif">
-                                @if($item->getFirstMediaUrl('default'))
-                                    <img src="{{ $item->getFirstMediaUrl('default') }}" class="d-block w-100 rounded" alt="{{ $item->title }}">
-                                @endif
-                                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
-                                    <h5>{{ $item->title }}</h5>
-                                    <p>{{ Str::limit($item->content, 100) }}</p>
+                        <div class="carousel-item @if($index === 0) active @endif">
+                            <a href="{{ route('news.show', $item) }}" class="text-decoration-none text-dark">
+                                <div class="card border-0 shadow rounded" style="background-color: #798D99;">
+                                    <div class="row g-0 align-items-center">
+                                        <div class="col-md-6">
+                                            @if($item->getFirstMediaUrl('default'))
+                                            <img src="{{ $item->getFirstMediaUrl('default') }}" class="img-fluid rounded-start w-100" style="max-height: 300px; object-fit: cover;" alt="{{ $item->title }}">
+                                            @endif
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $item->title }}</h5>
+                                                <p class="card-text">{{ Str::limit($item->content, 150) }}</p>
+                                                <p class="card-text"><small class="text-muted">Clique para ler mais</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
+                        </div>
                         @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">

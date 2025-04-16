@@ -12,3 +12,10 @@
 
 <!-- Tailwind CSS -->
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+<!--  -->
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>

@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 Route::get('/', [NewsController::class, 'index'])->name('home');
 
+Route::get('/noticias/{news}', [NewsController::class, 'show'])->name('news.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

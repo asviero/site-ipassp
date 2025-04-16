@@ -7,9 +7,8 @@
             <!-- Logo -->
             <div class="d-flex align-items-center mb-2 mb-md-0">
                 <a href="#" class="me-3">
-                    <img src="{{ asset('images/brasao-sm.png') }}" alt="Logo" style="height: 3rem;">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 4rem;">
                 </a>
-                <span class="fw-semibold text-primary d-none d-md-block">IPASSP-SM</span>
             </div>
             
             <!-- Links rápidos -->

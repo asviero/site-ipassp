@@ -13,4 +13,10 @@ class News extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $fillable = ['title', 'content'];
+
+
+    public function show(News $news)
+    {
+        return view('news.show', compact('news'));
+    }
 }
