@@ -14,25 +14,27 @@
                     <div class="carousel-inner">
                         @foreach($news as $index => $item)
                         <div class="carousel-item @if($index === 0) active @endif">
-                            <a href="{{ route('news.show', $item) }}" class="text-decoration-none text-dark">
-                                <div class="card border-0 shadow rounded overflow-hidden" style="background-color: #798D99;">
-                                    <div class="row g-0 align-items-stretch">
-                                        <div class="col-md-6">
-                                            @if($item->getFirstMediaUrl('default'))
-                                            <img src="{{ $item->getFirstMediaUrl('default') }}" 
-                                                class="img-fluid h-100 w-100 object-fit-cover" 
-                                                style="max-height: 300px;" 
+                            <div class="card border-0 shadow rounded carousel-card-bg">
+                                <div class="row g-0 align-items-stretch">
+                                    <div class="col-md-6">
+                                        @if($item->getFirstMediaUrl('default'))
+                                        <a href="{{ route('news.show', $item) }}" class="hover-zoom d-block">
+                                            <img src="{{ $item->getFirstMediaUrl('default') }}"
+                                                class="img-fluid h-100 w-100 object-fit-cover rounded-start"
+                                                style="max-height: 300px;"
                                                 alt="{{ $item->title }}">
-                                            @endif
-                                        </div>
-                                        <div class="col-md-6 d-flex flex-column justify-content-center p-4">
-                                            <h5 class="card-title">{{ $item->title }}</h5>
-                                            <p class="card-text">{{ Str::limit($item->content, 150) }}</p>
+                                        </a>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+                                        <a href="{{ route('news.show', $item) }}" class="text-decoration-none text-dark hover-fade">
+                                            <h5 class="card-title mb-2">{{ $item->title }}</h5>
+                                            <p class="card-text mb-2">{{ Str::limit($item->content, 150) }}</p>
                                             <p class="card-text"><small class="text-light">Clique para ler mais</small></p>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         @endforeach
                     </div>
@@ -50,10 +52,40 @@
                 @endif
                 <!-- Fim do Carrossel -->
 
-                <div class="card mt-4">
-                    <div class="card-body">
-                        <h5 class="card-title">Selecione um de nossos serviços online</h5>
-                        <a href="#" class="btn btn-primary">Acessar</a>
+                <div class="mt-4">
+                    <h4 class="mb-3">Selecione um de nossos serviços online</h4>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-heart-pulse fs-1 text-success mb-3"></i>
+                                    <h6 class="card-title">Plano de Saúde</h6>
+                                    <p class="card-text small text-muted">Veja detalhes sobre seu plano e cobertura.</p>
+                                    <a href="#" class="btn btn-outline-success btn-sm mt-2">Consultar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-person-add fs-1 text-warning mb-3"></i>
+                                    <h6 class="card-title">Prova de Vida</h6>
+                                    <p class="card-text small text-muted">Realize a Prova de Vida de forma simplificada.</p>
+                                    <a href="#" class="btn btn-outline-warning btn-sm mt-2">Agendar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body text-center">
+                                    <i class="bi bi-receipt fs-1 text-primary mb-3"></i>
+                                    <h6 class="card-title">Contracheque</h6>
+                                    <p class="card-text small text-muted">Veja detalhes sobre seu contracheque.</p>
+                                    <a href="#" class="btn btn-outline-primary btn-sm mt-2">Consultar</a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
