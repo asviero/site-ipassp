@@ -1,10 +1,10 @@
-@extends('layouts.app')  <!-- Herda do template base -->
+@extends('layouts.app')
 
-@section('content')  <!-- Seção de conteúdo -->
+@section('content')
 <main>
     <div class="container my-5">
         <div class="row">
-            <div class="col-md-8 mx-auto text-center">
+            <div class="col-lg-10 mx-auto text-center">
                 <h1 class="display-4">Bem-vindo ao IPASSP-SM</h1>
                 <p class="lead">Instituto de Previdência e Assistência à Saúde dos Servidores Públicos Municipais de Santa Maria</p>
 
@@ -15,19 +15,20 @@
                         @foreach($news as $index => $item)
                         <div class="carousel-item @if($index === 0) active @endif">
                             <a href="{{ route('news.show', $item) }}" class="text-decoration-none text-dark">
-                                <div class="card border-0 shadow rounded" style="background-color: #798D99;">
-                                    <div class="row g-0 align-items-center">
+                                <div class="card border-0 shadow rounded overflow-hidden" style="background-color: #798D99;">
+                                    <div class="row g-0 align-items-stretch">
                                         <div class="col-md-6">
                                             @if($item->getFirstMediaUrl('default'))
-                                            <img src="{{ $item->getFirstMediaUrl('default') }}" class="img-fluid rounded-start w-100" style="max-height: 300px; object-fit: cover;" alt="{{ $item->title }}">
+                                            <img src="{{ $item->getFirstMediaUrl('default') }}" 
+                                                class="img-fluid h-100 w-100 object-fit-cover" 
+                                                style="max-height: 300px;" 
+                                                alt="{{ $item->title }}">
                                             @endif
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ $item->title }}</h5>
-                                                <p class="card-text">{{ Str::limit($item->content, 150) }}</p>
-                                                <p class="card-text"><small class="text-muted">Clique para ler mais</small></p>
-                                            </div>
+                                        <div class="col-md-6 d-flex flex-column justify-content-center p-4">
+                                            <h5 class="card-title">{{ $item->title }}</h5>
+                                            <p class="card-text">{{ Str::limit($item->content, 150) }}</p>
+                                            <p class="card-text"><small class="text-light">Clique para ler mais</small></p>
                                         </div>
                                     </div>
                                 </div>
