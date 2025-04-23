@@ -30,7 +30,6 @@
                                         <a href="{{ route('news.show', $item) }}" class="text-decoration-none text-dark hover-fade">
                                             <h5 class="card-title mb-2">{{ $item->title }}</h5>
                                             <p class="card-text mb-2">{{ Str::limit($item->content, 150) }}</p>
-                                            <p class="card-text"><small class="text-light">Clique para ler mais</small></p>
                                         </a>
                                     </div>
                                 </div>
@@ -53,7 +52,9 @@
                 <!-- Fim do Carrossel -->
 
                 <div class="mt-4">
-                    <h4 class="mb-3">Selecione um de nossos serviços online</h4>
+                    <h4 class="mb-4 text-center fw-bold shadow-sm p-2 bg-light rounded">
+                        <i class="me-2 text-warning"></i> Selecione um de nossos serviços online
+                    </h4>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                         <div class="col">
                             <div class="card h-100 shadow-sm">

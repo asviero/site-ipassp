@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 Route::get('/', [NewsController::class, 'index'])->name('home');
 
+Route::get('/noticias', [NewsController::class, 'all'])->name('news.index');
+
 Route::get('/noticias/{news}', [NewsController::class, 'show'])->name('news.show');
 
 Route::middleware('auth')->group(function () {

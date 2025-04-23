@@ -5,7 +5,7 @@
         <!-- Linha superior -->
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-2">
             <!-- Logo -->
-            <a href="#" class="mb-2 mb-md-0">
+            <a href="{{ route('home')}}" class="mb-2 mb-md-0">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 4rem;">
             </a>
 
@@ -42,6 +42,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-primary fw-medium">Legislação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('news.index')}}" class="nav-link text-primary fw-medium">Notícias</a>
                     </li>
                 </ul>
             </nav>

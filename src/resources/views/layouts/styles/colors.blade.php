@@ -8,19 +8,19 @@
     }
 
     .hover-zoom img {
-    transition: transform 0.4s ease;
+        transition: transform 0.4s ease;
     }
 
-.hover-zoom:hover img {
-    transform: scale(1.03);
+    .hover-zoom:hover img {
+        transform: scale(1.03);
     }
 
-.hover-fade {
-    transition: color 0.3s ease;
+    .hover-fade {
+        transition: color 0.3s ease;
     }
 
-.hover-fade:hover {
-    color: #005c99 !important;
+    .hover-fade:hover {
+        color: #005c99 !important;
     }
 
 </style>
