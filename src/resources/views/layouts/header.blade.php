@@ -1,58 +1,59 @@
-<!-- Cabeçalho -->
-
-<header class="shadow-sm bg-white border-bottom">
+<header class="navbar-custom shadow-sm">
     <div class="container">
         <!-- Linha superior -->
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-2">
             <!-- Logo -->
-            <a href="{{ route('home')}}" class="mb-2 mb-md-0">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 4rem;">
-            </a>
-
+            <div class="d-flex align-items-center mb-2 mb-md-0">
+                <a href="#" class="me-3">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 4rem;">
+                </a>
+            </div>
+            
             <!-- Links rápidos -->
-            <div class="d-flex flex-wrap gap-3">
+            <div class="d-flex gap-3">
                 <a href="#" class="text-decoration-none text-primary">
                     <i class="bi bi-search me-1"></i> Transparência
                 </a>
                 <a href="#" class="text-decoration-none text-primary">
-                    <i class="bi bi-telephone me-1"></i> Ouvidoria
+                    <span class="bi bi-telephone me-1"></span> Ouvidoria
                 </a>
                 <a href="#" class="text-decoration-none text-primary">
-                    <i class="bi bi-info-circle me-1"></i> Acesso à Informação
+                    <span class="bi bi-info-circle me-1"></span> Acesso à Informação
                 </a>
             </div>
         </div>
 
         <!-- Linha principal -->
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+        <div class="d-flex justify-content-between align-items-center py-3">
             <!-- Menu de navegação -->
-            <nav class="mb-3 mb-md-0">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-primary fw-medium">Institucional</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-primary fw-medium">Segurados</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-primary fw-medium">Dependentes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-primary fw-medium">Servidores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-primary fw-medium">Legislação</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('news.index')}}" class="nav-link text-primary fw-medium">Notícias</a>
-                    </li>
-                </ul>
+            <nav class="d-none d-md-flex gap-4">
+                <a href="#" class="text-decoration-none text-primary fw-medium">Institucional</a>
+                <a href="#" class="text-decoration-none text-primary fw-medium">Segurados</a>
+                <a href="#" class="text-decoration-none text-primary fw-medium">Dependentes</a>
+                <a href="#" class="text-decoration-none text-primary fw-medium">Servidores</a>
+                <a href="#" class="text-decoration-none text-primary fw-medium">Legislação</a>
             </nav>
 
             <!-- Campo de pesquisa -->
-            <form class="d-flex" role="search">
-                <input class="form-control rounded-pill px-4" type="search" placeholder="Pesquisa no site..." aria-label="Search" style="width: 250px;">
-            </form>
+            <div class="search-box">
+                <input type="text" placeholder="  Pesquisa no site..."
+                    class="form-control rounded-pill ps-4" style="width: 250px;">
+                <span class="search-icon">🔍</span>
+            </div>
         </div>
+    </div>
+
+    <!-- Usuário e Logout -->
+    <div class="d-flex justify-content-end align-items-center py-2 position-absolute top-0 end-0 pe-4">
+        @auth
+            <span class="text-primary fw-bold me-3">{{ Auth::user()->name }}</span>
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="btn btn-link text-decoration-none text-primary">Logout</button>
+            </form>
+        @endauth
+        @guest
+            <a href="{{ route('login') }}" class="text-decoration-none text-primary fw-bold me-3">Login</a>
+        @endguest
     </div>
 </header>
