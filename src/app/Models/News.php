@@ -12,11 +12,17 @@ class News extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'updated_by'];
 
 
     public function show(News $news)
     {
         return view('news.show', compact('news'));
     }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
+    }
+
 }

@@ -12,7 +12,9 @@
             <thead>
                 <tr>
                     <th>Título</th>
-                    <th>Data de Criação</th>
+                    <th>Criado em</th>
+                    <th>Atualizado em</th>
+                    <th>Atualizado por</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -20,7 +22,9 @@
                 @foreach($news as $item)
                 <tr>
                     <td>{{ $item->title }}</td>
-                    <td>{{ $item->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $item->created_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $item->updated_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $item->updatedBy?->name ?? '-' }}</td>
                     <td>
                         <a href="{{ route('admin.noticias.edit', $item) }}" class="btn btn-sm btn-primary">Editar</a>
                         <form action="{{ route('admin.noticias.destroy', $item) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Tem certeza que deseja excluir esta notícia?')">
@@ -34,7 +38,6 @@
             </tbody>
         </table>
 
-        {{-- Paginação --}}
         <div class="mt-4">
             {{ $news->links('pagination::bootstrap-5') }}
         </div>

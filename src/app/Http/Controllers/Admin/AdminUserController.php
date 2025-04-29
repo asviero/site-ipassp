@@ -21,7 +21,11 @@ class AdminUserController extends Controller
 
     public function update(Request $request, User $usuario)
     {
-        $usuario->update($request->only('name', 'email'));
+        $data = $request->only('name', 'email');
+        $data['updated_by'] = auth()->id(); // Adiciona o ID do usuário que atualizou
+
+        $usuario->update($data);
+
         return redirect()->route('admin.usuarios.index')->with('success', 'Usuário atualizado.');
     }
 

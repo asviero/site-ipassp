@@ -10,7 +10,8 @@
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Data de Cadastro</th>
+                    <th>Criado em</th>
+                    <th>Atualizado em</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -19,7 +20,8 @@
                 <tr>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $user->updated_at->format('d/m/Y H:i') }}</td>
                     <td>
                         <a href="{{ route('admin.usuarios.edit', $user) }}" class="btn btn-sm btn-primary">Editar</a>
                         <form action="{{ route('admin.usuarios.destroy', $user) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
@@ -33,7 +35,6 @@
             </tbody>
         </table>
 
-        {{-- Paginação --}}
         <div class="mt-4">
             {{ $users->links('pagination::bootstrap-5') }}
         </div>
