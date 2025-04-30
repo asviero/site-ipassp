@@ -13,6 +13,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::latest()->with('media')->take(5)->get();
+
         return view('home', compact('news'));
     }
 
@@ -67,6 +68,7 @@ class NewsController extends Controller
     public function all()
     {
         $news = News::latest()->with('media')->paginate(10);
+
         return view('noticias', compact('news'));
     }
 }

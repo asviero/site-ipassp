@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,7 +27,5 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Gerenciamento de Usuários (opcional - mostrar, editar e deletar usuários)
     Route::resource('usuarios', AdminUserController::class)->only(['index', 'edit', 'update', 'destroy']);
 });
-
-
 
 require __DIR__.'/auth.php';

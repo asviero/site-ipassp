@@ -11,6 +11,7 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::paginate(10);
+
         return view('admin.usuarios.index', compact('users'));
     }
 
@@ -32,6 +33,7 @@ class AdminUserController extends Controller
     public function destroy(User $usuario)
     {
         $usuario->delete();
+
         return redirect()->route('admin.usuarios.index')->with('success', 'Usuário removido.');
     }
 }

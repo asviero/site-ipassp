@@ -26,13 +26,13 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
-    
+
         // Verificar se o usuário tem a permissão de administrador
         if (auth()->user()->hasRole('admin')) {
             // Redireciona para a página de admin se for admin
             return redirect()->route('admin.dashboard');
         }
-    
+
         // Caso contrário, redireciona para o home
         return redirect()->intended(route('admin.dashboard'));
     }

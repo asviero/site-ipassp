@@ -11,6 +11,7 @@ class AdminNewsController extends Controller
     public function index()
     {
         $news = News::with('updatedBy')->latest()->paginate(10); // <-- importante
+
         return view('admin.noticias.index', compact('news'));
     }
 
@@ -58,6 +59,7 @@ class AdminNewsController extends Controller
     public function destroy(News $noticia)
     {
         $noticia->delete();
+
         return redirect()->route('admin.noticias.index')->with('success', 'Notícia removida.');
     }
 }
