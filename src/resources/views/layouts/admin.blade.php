@@ -20,17 +20,29 @@
         <!-- Conteúdo -->
         <div class="flex-grow-1 p-4">
             @auth
-                <div class="text-end mb-3">
-                    <strong>Olá, {{ Auth::user()->name }}</strong>
-                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-outline-danger">Logout</button>
-                    </form>
+                <div class="d-flex justify-content-end mb-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item" href="{{ url('/') }}">Tela Inicial</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             @endauth
 
             @yield('content')
         </div>
     </div>
+
+    <!-- Bootstrap Bundle (JS + Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -38,22 +38,34 @@
             <div class="search-box">
                 <input type="text" placeholder="  Pesquisa no site..."
                     class="form-control rounded-pill ps-4" style="width: 250px;">
-                <span class="search-icon">🔍</span>
             </div>
         </div>
     </div>
 
-    <!-- Usuário e Logout -->
+    <!-- Usuário e Logout com Dropdown -->
     <div class="d-flex justify-content-end align-items-center py-2 position-absolute top-0 end-0 pe-4">
         @auth
-            <span class="text-primary fw-bold me-3">{{ Auth::user()->name }}</span>
-            <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                @csrf
-                <button type="submit" class="btn btn-link text-decoration-none text-primary">Logout</button>
-            </form>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle fw-bold" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Área Administrativa</a>
+                    </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         @endauth
+
         @guest
             <a href="{{ route('login') }}" class="text-decoration-none text-primary fw-bold me-3">Login</a>
         @endguest
     </div>
+
 </header>
