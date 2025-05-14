@@ -9,18 +9,8 @@
                 </a>
             </div>
             
-            <!-- Links rápidos -->
-            <div class="d-flex gap-3">
-                <a href="#" class="text-decoration-none text-primary">
-                    <i class="bi bi-search me-1"></i> Transparência
-                </a>
-                <a href="#" class="text-decoration-none text-primary">
-                    <span class="bi bi-telephone me-1"></span> Ouvidoria
-                </a>
-                <a href="#" class="text-decoration-none text-primary">
-                    <span class="bi bi-info-circle me-1"></span> Acesso à Informação
-                </a>
-            </div>
+        <!-- Links rápidos -->
+        @include('layouts.partials.header.quick-links')
         </div>
 
         <!-- Linha principal -->
