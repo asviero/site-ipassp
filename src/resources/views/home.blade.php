@@ -46,6 +46,16 @@
                         <span class="visually-hidden">Próxima</span>
                     </button>
                 </div>
+
+                <!-- Botão para todas as notícias -->
+                <div class="text-center mt-3">
+                    <a href="{{ route('news.index') }}"
+                        class="btn"
+                        style="background-color: #E9F1F7; color: #000; border: 1px solid #cfdde8;">
+                        <i class="bi bi-plus-circle me-2"></i> Acesse todas as notícias
+                    </a>
+                </div>
+
                 @else
                     <p class="text-muted mt-4">Nenhuma notícia disponível no momento.</p>
                 @endif
