@@ -9,16 +9,16 @@
                 <p class="lead">Instituto de Previdência e Assistência à Saúde dos Servidores Públicos Municipais de Santa Maria</p>
 
                 <!-- Carrossel de Notícias -->
-                @if($news->count())
+                @if($slider->count())
                 <div id="newsCarousel" class="carousel slide mt-4 mb-4" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @foreach($news as $index => $item)
+                        @foreach($slider as $index => $item)
                         <div class="carousel-item @if($index === 0) active @endif">
                             <div class="card border-0 shadow rounded carousel-card-bg">
                                 <div class="row g-0 align-items-stretch">
                                     <div class="col-md-6">
                                         @if($item->getFirstMediaUrl('default'))
-                                        <a href="{{ route('news.show', $item) }}" class="hover-zoom d-block">
+                                        <a href="{{ route('detail', $item) }}" class="hover-zoom d-block">
                                             <img src="{{ $item->getFirstMediaUrl('default') }}"
                                                 class="img-fluid h-100 w-100 object-fit-cover rounded-start"
                                                 style="max-height: 300px;"
@@ -27,7 +27,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-6 d-flex flex-column justify-content-center p-4">
-                                        <a href="{{ route('news.show', $item) }}" class="text-decoration-none text-dark hover-fade">
+                                        <a href="{{ route('detail', $item) }}" class="text-decoration-none text-dark hover-fade">
                                             <h5 class="card-title mb-2">{{ $item->title }}</h5>
                                             <p class="card-text mb-2">{{ Str::limit($item->content, 150) }}</p>
                                         </a>

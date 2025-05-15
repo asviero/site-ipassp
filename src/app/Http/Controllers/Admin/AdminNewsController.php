@@ -10,7 +10,7 @@ class AdminNewsController extends Controller
 {
     public function index()
     {
-        $news = News::with('updatedBy')->latest()->paginate(10); // <-- importante
+        $news = News::all();// <-- importante
 
         return view('admin.noticias.index', compact('news'));
     }
@@ -28,6 +28,9 @@ class AdminNewsController extends Controller
         ]);
 
         $news = News::create($request->only('title', 'content'));
+        $news->updated_by = auth()->id(); // Adiciona o ID do usuário que atualizou
+        
+        $news->save();
 
         if ($request->hasFile('image')) {
             $news->addMediaFromRequest('image')->toMediaCollection('default');

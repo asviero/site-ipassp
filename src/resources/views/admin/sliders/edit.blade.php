@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container py-5">
-    <h1>Editar Notícia</h1>
+    <h1>Editar Slider</h1>
 
-    <form action="{{ route('admin.noticias.update', $news) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.slider.update', $news) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

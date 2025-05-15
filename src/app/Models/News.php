@@ -9,7 +9,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class News extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use  InteractsWithMedia;
 
     protected $fillable = ['title', 'content', 'updated_by'];
 
