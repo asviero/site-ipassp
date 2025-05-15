@@ -4,7 +4,7 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-2">
             <!-- Logo -->
             <div class="d-flex align-items-center mb-2 mb-md-0">
-                <a href="#" class="me-3">
+                <a href="/" class="me-3">
                     <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 4rem;">
                 </a>
             </div>
@@ -17,18 +17,18 @@
         <div class="d-flex justify-content-between align-items-center py-3">
             <!-- Menu de navegação -->
             <nav class="d-none d-md-flex gap-4">
-                <a href="#" class="text-decoration-none text-primary fw-medium">Institucional</a>
-                <a href="#" class="text-decoration-none text-primary fw-medium">Segurados</a>
-                <a href="#" class="text-decoration-none text-primary fw-medium">Dependentes</a>
-                <a href="#" class="text-decoration-none text-primary fw-medium">Servidores</a>
-                <a href="#" class="text-decoration-none text-primary fw-medium">Legislação</a>
+                <a href="/institucional" class="text-decoration-none text-primary fw-medium">Institucional</a>
+                <a href="/segurados" class="text-decoration-none text-primary fw-medium">Segurados</a>
+                <a href="/dependentes" class="text-decoration-none text-primary fw-medium">Dependentes</a>
+                <a href="/servidores" class="text-decoration-none text-primary fw-medium">Servidores</a>
+                <a href="/legislacao" class="text-decoration-none text-primary fw-medium">Legislação</a>
             </nav>
 
             <!-- Campo de pesquisa -->
-            <div class="search-box">
-                <input type="text" placeholder="  Pesquisa no site..."
+            <form action="{{ route('news.search') }}" method="GET" class="search-box">
+                <input type="text" name="q" placeholder="Pesquisa no site..."
                     class="form-control rounded-pill ps-4" style="width: 250px;">
-            </div>
+            </form>
         </div>
     </div>
 
