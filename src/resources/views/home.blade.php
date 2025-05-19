@@ -89,10 +89,10 @@
                         <div class="col">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body text-center">
-                                    <i class="bi bi-receipt fs-1 text-primary mb-3"></i>
-                                    <h6 class="card-title">Contracheque</h6>
-                                    <p class="card-text small text-muted">Veja detalhes sobre seu contracheque.</p>
-                                    <a href="#" class="btn btn-outline-primary btn-sm mt-2">Consultar</a>
+                                    <i class="bi bi-files fs-1 text-primary mb-3"></i>
+                                    <h6 class="card-title">Processo Seletivo de Estagiários</h6>
+                                    <p class="card-text small text-muted">Encontre aqui os editais.</p>
+                                    <a href="http://localhost/editais" class="btn btn-outline-primary btn-sm mt-2">Consultar</a>
                                 </div>
                             </div>
                         </div>
