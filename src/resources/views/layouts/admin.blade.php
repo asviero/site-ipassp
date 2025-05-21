@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Painel Admin - IPASSP-SM</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/admin.css')}}">
     <style>
          html, body {
       height: 100%;
@@ -22,6 +23,7 @@
                 <li class="nav-item"><a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
                 <li class="nav-item"><a href="{{ route('admin.noticias.index') }}" class="nav-link text-white">Notícias</a></li>
                 <li class="nav-item"><a href="{{ route('admin.slider.index') }}" class="nav-link text-white">Slider</a></li>
+                <li class="nav-item"><a href="{{ route('admin.editais.index') }}" class="nav-link text-white">Editais</a></li>
                 <li class="nav-item"><a href="{{ route('admin.usuarios.index') }}" class="nav-link text-white">Usuários</a></li>
             </ul>
         </div>
@@ -46,6 +48,9 @@
                     </div>
                 </div>
             @endauth
+            <x-flash-message type="success" />
+            <x-flash-message type="error" />
+            <x-flash-message type="info" />
 
             @yield('content')
             

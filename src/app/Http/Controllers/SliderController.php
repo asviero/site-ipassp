@@ -83,7 +83,7 @@ class SliderController extends Controller
         $data['user_id'] = auth()->id(); // Adiciona o ID do usuário que atualizou
 
         echo $data['user_id'] ;
-        sleep(4);
+        
 
         $slider->update($data);
 

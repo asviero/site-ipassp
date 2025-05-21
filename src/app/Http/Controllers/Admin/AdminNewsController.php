@@ -27,7 +27,9 @@ class AdminNewsController extends Controller
             'content' => 'required',
         ]);
 
-        $news = News::create($request->only('title', 'content'));
+        $data = $request->only('title', 'content', 'published_at', 'displayed');
+        $data['displayed'] = $request->has('displayed'); // retorna true ou false
+        $news = News::create($data);
         $news->updated_by = auth()->id(); // Adiciona o ID do usuário que atualizou
         
         $news->save();
@@ -46,7 +48,8 @@ class AdminNewsController extends Controller
 
     public function update(Request $request, News $noticia)
     {
-        $data = $request->only('title', 'content');
+        $data = $request->only('title', 'content', 'published_at', 'displayed');
+        $data['displayed'] = $request->has('displayed'); // retorna true ou false
         $data['updated_by'] = auth()->id(); // Adiciona o ID do usuário que atualizou
 
         $noticia->update($data);
