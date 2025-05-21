@@ -9,9 +9,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class News extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use  InteractsWithMedia;
 
-    protected $fillable = ['title', 'content', 'updated_by'];
+    protected $fillable = ['title', 'content', 'updated_by', 'published_at', 'displayed'];
 
     public function show(News $news)
     {

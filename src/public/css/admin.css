@@ -1,0 +1,15 @@
+.nav-item ok{
+    background-color: red;
+
+
+}
+
+.nav-item :hover{
+    background-color: red;
+    
+}
+
+span.mandatory{
+    font-style: italic;
+    color: red;
+}
