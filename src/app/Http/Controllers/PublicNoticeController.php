@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class PublicNoticeController extends Controller
 {
-
-
     public function __construct()
     {
         // Compartilha a variável $menu com todas as views deste controller
@@ -39,30 +37,30 @@ class PublicNoticeController extends Controller
     public function store(Request $request)
     {
         // Validação dos campos
-    $validated = $request->validate([
-        'label' => 'required|string|max:255',
-        'number' => 'required|integer',
-        'year' => 'required|integer',
-        'short_desc' => 'nullable|string',
-        'published_on' => 'nullable|date',
-        'status' => 'required|in:open,closed',
-        'file_path' => 'file|mimes:pdf,docx,odt|max:10240',
-    ]);
+        $validated = $request->validate([
+            'label' => 'required|string|max:255',
+            'number' => 'required|integer',
+            'year' => 'required|integer',
+            'short_desc' => 'nullable|string',
+            'published_on' => 'nullable|date',
+            'status' => 'required|in:open,closed',
+            'file_path' => 'file|mimes:pdf,docx,odt|max:10240',
+        ]);
 
-    // Converte o checkbox para booleano
-    $validated['displayed'] = $request->has('displayed');
+        // Converte o checkbox para booleano
+        $validated['displayed'] = $request->has('displayed');
 
-    // Lida com upload do arquivo
-    if ($request->hasFile('file_path')) {
-        $path = $request->file('file_path')->store('public_notices');
-        $validated['file_path'] = $path;
-    }
+        // Lida com upload do arquivo
+        if ($request->hasFile('file_path')) {
+            $path = $request->file('file_path')->store('public_notices');
+            $validated['file_path'] = $path;
+        }
 
-    // Cria o registro
-    $publicNotice = PublicNotice::create($validated);
+        // Cria o registro
+        $publicNotice = PublicNotice::create($validated);
 
-    return redirect()->route('admin.editais.index')
-        ->with('success', 'Edital criado com sucesso!');    
+        return redirect()->route('admin.editais.index')
+            ->with('success', 'Edital criado com sucesso!');
     }
 
     /**
@@ -91,7 +89,7 @@ class PublicNoticeController extends Controller
         $request->merge([
             'displayed' => $request->has('displayed'),
         ]);
-        
+
         $validated = $request->validate([
             'label' => 'required|string|max:255',
             'number' => 'required|integer',
@@ -102,20 +100,18 @@ class PublicNoticeController extends Controller
             'displayed' => 'nullable|boolean',
             'file_path' => 'file|mimes:pdf,docx,odt|max:2048', // 2MB
         ]);
-    
+
         $data = $request->only('label', 'number', 'year', 'short_desc', 'published_on', 'status', 'displayed');
-        $data['user_id'] = auth()->id(); 
-        
-        //$data['displayed'] = $request->has('displayed');            
+        $data['user_id'] = auth()->id();
+
+        // $data['displayed'] = $request->has('displayed');
         $updated = $editai->update($data);
-        
 
         if ($request->hasFile('file_path')) {
             $editai->clearMediaCollection('public_notices');
             $editai->addMediaFromRequest('file_path')->toMediaCollection('public_notices');
         }
-    
-        
+
         if ($updated) {
             return redirect()->route('admin.editais.index')->with('success', 'Edital atualizado com sucesso.');
         } else {
@@ -129,6 +125,7 @@ class PublicNoticeController extends Controller
     public function destroy(PublicNotice $editai)
     {
         $editai->delete();
+
         return redirect()->route('admin.editais.index')->with('success', 'Slider removido.');
     }
 }

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Slider;
 use App\Models\News;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
-
     public function __construct()
     {
         // Compartilha a variável $menu com todas as views deste controller
@@ -47,11 +46,9 @@ class SliderController extends Controller
         $data = $request->only('title', 'content');
         $data['displayed'] = $request->has('displayed'); // retorna true ou false
 
-
         $slider = Slider::create($data);
         $slider->user_id = auth()->id();
         $slider->save();
-
 
         if ($request->hasFile('image')) {
             $slider->addMediaFromRequest('image')->toMediaCollection('default');
@@ -66,9 +63,9 @@ class SliderController extends Controller
     public function show(Slider $slider)
     {
         $slider = Slider::where('displayed', true)
-        ->latest()
-        ->with('media')
-        ->paginate(10);
+            ->latest()
+            ->with('media')
+            ->paginate(10);
 
         return view('home', compact('slider'));
     }
@@ -89,8 +86,7 @@ class SliderController extends Controller
         $data = $request->only('title', 'content');
         $data['user_id'] = auth()->id(); // Adiciona o ID do usuário que atualizou
 
-        echo $data['user_id'] ;
-        
+        echo $data['user_id'];
 
         $slider->update($data);
 
@@ -108,13 +104,15 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         $slider->delete();
+
         return redirect()->route('admin.slider.index')->with('success', 'Slider removido.');
     }
 
-    public function detail(Slider $slider){
+    public function detail(Slider $slider)
+    {
 
-        echo "nada ainda";
-       echo $slider->title;
+        echo 'nada ainda';
+        echo $slider->title;
 
     }
 

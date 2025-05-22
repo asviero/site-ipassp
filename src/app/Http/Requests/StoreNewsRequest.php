@@ -23,7 +23,7 @@ class StoreNewsRequest extends FormRequest
             'published_at' => 'nullable|date',
         ];
     }
-    
+
     public function messages(): array
     {
         return [
@@ -33,7 +33,7 @@ class StoreNewsRequest extends FormRequest
             'published_at.date' => 'A data de publicação deve ser uma data válida.',
         ];
     }
-    
+
     public function attributes(): array
     {
         return [
@@ -42,5 +42,5 @@ class StoreNewsRequest extends FormRequest
             'category_id' => 'categoria',
             'published_at' => 'data de publicação',
         ];
-    }    
+    }
 }

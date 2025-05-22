@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 class AdminController extends Controller
 {
-
     public function __construct()
     {
         // Compartilha a variável $menu com todas as views deste controller

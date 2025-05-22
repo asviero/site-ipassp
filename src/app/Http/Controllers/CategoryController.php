@@ -7,12 +7,19 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'editais');
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $cat = Category::all();
+
         return view('admin.categories.index', compact('cat'));
     }
 
@@ -35,7 +42,7 @@ class CategoryController extends Controller
         ]);
 
         $data = $request->only('label', 'slug', 'observation');
-       
+
         $cat = Category::create($data);
 
         $cat->save();
@@ -66,10 +73,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $categoria)
     {
         $data = $request->only('label', 'slug', 'observation');
-        
-        //to do validation 
-       $categoria->update($data);
 
+        // to do validation
+        $categoria->update($data);
 
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria atualizada.');
     }
@@ -79,8 +85,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $categoria)
     {
-        
+
         $categoria->delete();
+
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria removida.');
     }
 }
