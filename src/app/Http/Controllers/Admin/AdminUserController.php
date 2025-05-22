@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
 {
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'usuarios');
+    }
+
     public function index()
     {
         $users = User::paginate(10);

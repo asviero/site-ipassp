@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'slider');
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class PublicNoticeController extends Controller
 {
+
+
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'editais');
+    }
+
     /**
      * Display a listing of the resource.
      */

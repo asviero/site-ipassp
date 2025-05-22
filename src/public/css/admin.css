@@ -13,3 +13,8 @@ span.mandatory{
     font-style: italic;
     color: red;
 }
+
+
+.nav-item-active{
+    background-color: rgb(128, 126, 126);;
+}

@@ -10,6 +10,10 @@ use App\Http\Requests\StoreNewsRequest;
 
 class AdminNewsController extends Controller
 {
+    public function __construct() {
+        view()->share('menu', 'noticias');
+    }
+
     public function index()
     {
         $news = News::all();
