@@ -4,51 +4,53 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreNewsRequest;
 
 class AdminNewsController extends Controller
 {
     public function index()
     {
-        $news = News::all();// <-- importante
-
+        $news = News::all();
         return view('admin.noticias.index', compact('news'));
     }
 
     public function create()
     {
-        return view('admin.noticias.create');
+        $cat = Category::all();
+        return view('admin.noticias.create', compact('cat'));
     }
 
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
-
-        $data = $request->only('title', 'content', 'published_at', 'displayed');
-        $data['displayed'] = $request->has('displayed'); // retorna true ou false
+        // Pega apenas os campos necessários
+        $data = $request->only('title', 'content', 'published_at', 'category_id');
+    
+        // Checkbox "displayed" (marcado ou não)
+        $data['displayed'] = $request->has('displayed');
         $news = News::create($data);
-        $news->updated_by = auth()->id(); // Adiciona o ID do usuário que atualizou
-        
+    
+        $news->updated_by = auth()->id();
         $news->save();
-
+    
         if ($request->hasFile('image')) {
             $news->addMediaFromRequest('image')->toMediaCollection('default');
         }
-
+    
         return redirect()->route('admin.noticias.index')->with('success', 'Notícia criada com sucesso.');
     }
+    
 
     public function edit(News $noticia)
     {
-        return view('admin.noticias.edit', ['news' => $noticia]);
+        $cat = Category::all();
+        return view('admin.noticias.edit', ['news' => $noticia, 'cat'=> $cat]);
     }
 
-    public function update(Request $request, News $noticia)
+    public function update(StoreNewsRequest $request, News $noticia)
     {
-        $data = $request->only('title', 'content', 'published_at', 'displayed');
+        $data = $request->only('title', 'content', 'published_at', 'displayed', 'category_id');
         $data['displayed'] = $request->has('displayed'); // retorna true ou false
         $data['updated_by'] = auth()->id(); // Adiciona o ID do usuário que atualizou
 
@@ -65,7 +67,6 @@ class AdminNewsController extends Controller
     public function destroy(News $noticia)
     {
         $noticia->delete();
-
         return redirect()->route('admin.noticias.index')->with('success', 'Notícia removida.');
     }
 }

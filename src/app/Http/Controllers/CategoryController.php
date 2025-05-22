@@ -79,7 +79,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $categoria)
     {
-        //
+        
         $categoria->delete();
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria removida.');
     }

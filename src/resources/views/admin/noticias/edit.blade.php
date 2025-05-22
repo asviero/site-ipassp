@@ -2,6 +2,16 @@
 
 @section('content')
 <div class="container py-5">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <h5><strong>Ocorreram alguns erros:</strong></h5>
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h1>Editar Notícia</h1>
 
     <form action="{{ route('admin.noticias.update', $news) }}" method="POST" enctype="multipart/form-data">
@@ -34,6 +44,19 @@
         <div class="form-check mb-3">
             <input type="checkbox" class="form-check-input" id="toggleContent" name="displayed"  @checked(old('displayed', $news->displayed ?? false))>
             <label class="form-check-label" for="toggleContent">Habilitar conteúdo</label>
+        </div>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Categoria</label>
+            <select name="category_id" class="form-control" id="published_at">
+                <option value="">Selecione uma categoria</option>
+                @foreach ($cat as $c)
+                <option value="{{ $c->id }}"
+                {{ (old('category_id', $news->category_id ?? '') == $c->id) ? 'selected' : '' }}>
+                {{ $c->label }}
+                </option>
+                @endforeach                
+            </select>
         </div>
 
 
