@@ -21,6 +21,7 @@
             <h4 class="mb-4">Admin IPASSP</h4>
             <ul class="nav flex-column">
                 <li class="nav-item{{ ($menu ?? '') === 'home' ? '-active' : '' }}"><a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
+                <li class="nav-item{{ ($menu ?? '') === 'paginas' ? '-active' : '' }}"><a href="{{ route('admin.paginas.index') }}" class="nav-link text-white">Páginas</a></li>
                 <li class="nav-item{{ ($menu ?? '') === 'noticias' ? '-active' : '' }}"><a href="{{ route('admin.noticias.index') }}" class="nav-link text-white">Notícias</a></li>
                 <li class="nav-item{{ ($menu ?? '') === 'slider' ? '-active' : '' }}"><a href="{{ route('admin.slider.index') }}" class="nav-link text-white">Slider</a></li>
                 <li class="nav-item{{ ($menu ?? '') === 'editais' ? '-active' : '' }}"><a href="{{ route('admin.editais.index') }}" class="nav-link text-white">Editais</a></li>

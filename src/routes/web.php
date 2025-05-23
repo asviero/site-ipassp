@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicNoticeController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SliderController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SliderController::class, 'show'])->name('home');
@@ -35,6 +37,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('slider', SliderController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
 
     Route::resource('editais', PublicNoticeController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
+
+    Route::resource('paginas', PagesController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
 
     Route::resource('categorias', CategoryController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
 
