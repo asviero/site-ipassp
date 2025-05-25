@@ -43,7 +43,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('categorias', CategoryController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
 
     // Gerenciamento de Usuários (opcional - mostrar, editar e deletar usuários)
-    Route::resource('usuarios', AdminUserController::class)->only(['index', 'edit', 'update', 'destroy']);
+    Route::resource('usuarios', AdminUserController::class)->only(['index', 'edit', 'update', 'destroy', 'store', 'create']);
 });
 
 // Botões Header
