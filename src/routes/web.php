@@ -53,5 +53,10 @@ Route::View('/dependentes', 'dependentes')->name('dependendetes');
 Route::View('/servidores', 'servidores')->name('servidores');
 Route::View('/legislacao', 'legislacao')->name('legislacao');
 
+// Editais
+Route::view('/editais', 'editais')->name('editais');
+Route::view('/editais/processo_seletivo_estagio', 'editais-estagio')->name('editais-estagio');
+Route::view('/editais/concurso_publico', 'editais-concurso')->name('editais-concurso');
+
 // Autenticação (Laravel Breeze, Fortify, etc.)
 require __DIR__ . '/auth.php';
