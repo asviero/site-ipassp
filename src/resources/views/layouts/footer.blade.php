@@ -25,7 +25,25 @@
 
     <!-- Seção do Mapa -->
     <div class="w-100">
-        <div id="map" style="height: 300px; width: 100%;"></div>
+        <div id="map" style="height: 300px; width: 100%;">
+        <!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Marker</title>
+    <!-- The callback parameter is required, so we use console.debug as a noop -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDv1CB_AjbD871D_raOxEPfcPbKrfbLo3Q&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
+    <link rel="stylesheet" href="./style.css"/>
+  </head>
+  <body>
+    <gmp-map center="-29.68471336364746,-53.804752349853516" zoom="14" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker position="-29.68471336364746,-53.804752349853516" title="My location"></gmp-advanced-marker>
+    </gmp-map>
+  </body>
+</html>
+
+
+        </div>
     </div>
     
     <!-- Copyright -->

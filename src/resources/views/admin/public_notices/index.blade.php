@@ -1,10 +1,10 @@
-@extends('layouts.admin')
+@extends('admin.dashboard2')
 
 @section('content')
 <div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Editais</h1>
-        <a href="{{ route('admin.editais.create') }}" class="btn btn-success">Novo edital</a>
+        <a href="{{ route('admin.editais.create') }}" class="btn btn-success">Novo <i class="fas fa-plus"></i></a>
     </div>
 
     <div class="table-responsive">
@@ -26,12 +26,12 @@
                     <td>{{ $item->year }}</td>
                     <td><a href="{{ $item->file_path }}" target="_blank" > {{ $item->label }} </a></td>
 
-                    <td>
-                        <a href="{{ route('admin.editais.edit', $item) }}" class="btn btn-sm btn-primary">Editar</a>
+                    <td class="actions-buttons">
+                        <a href="{{ route('admin.editais.edit', $item) }}" class="btn btn-sm btn-primary"> <i class="fas fa-edit"></i></a>
                         <form action="{{ route('admin.editais.destroy', $item) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Tem certeza que deseja excluir esta notícia?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                         </form>
                     </td>
                 </tr>
