@@ -56,5 +56,14 @@ Route::View('/dependentes', 'dependentes')->name('dependendetes');
 Route::View('/servidores', 'servidores')->name('servidores');
 Route::View('/legislacao', 'legislacao')->name('legislacao');
 
+// Editais
+Route::view('/editais', 'editais')->name('editais');
+
+Route::view('/editais/concurso_publico', 'editais-concurso')->name('editais-concurso');
+Route::get('/editais/concurso_publico/{year}', [PublicNoticeController::class, 'editaisConcursosPorAno'])->name('editais-concurso-ano');
+
+Route::view('/editais/processo_seletivo_estagio', 'editais-estagio')->name('editais-estagio');
+Route::get('/editais/processo_seletivo_estagio/{year}', [PublicNoticeController::class, 'editaisEstagiosPorAno'])->name('editais-estagio-ano');
+
 // Autenticação (Laravel Breeze, Fortify, etc.)
 require __DIR__.'/auth.php';

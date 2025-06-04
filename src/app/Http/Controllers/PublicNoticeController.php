@@ -128,4 +128,34 @@ class PublicNoticeController extends Controller
 
         return redirect()->route('admin.editais.index')->with('success', 'Slider removido.');
     }
+
+    public function editaisEstagiosPorAno($year)
+    {
+        $editais = PublicNotice::whereYear('published_on', $year)
+            ->orderBy('published_on', 'desc')
+            ->get()
+            ->groupBy(function ($item) {
+                return \Carbon\Carbon::parse($item->published_on)->month;
+            });
+
+        return view('editais-estagio', [
+            'editais' => $editais,
+            'year' => $year,
+        ]);
+    }
+
+    public function editaisConcursosPorAno($year)
+    {
+        $editais = PublicNotice::whereYear('published_on', $year)
+            ->orderBy('published_on', 'desc')
+            ->get()
+            ->groupBy(function ($item) {
+                return \Carbon\Carbon::parse($item->published_on)->month;
+            });
+
+        return view('editais-concurso', [
+            'editais' => $editais,
+            'year' => $year,
+        ]);
+    }
 }
