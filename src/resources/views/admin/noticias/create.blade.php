@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.dashboard2')
 
 @section('content')
 <div class="container py-5">
@@ -23,10 +23,9 @@
             <input type="text" class="form-control" name="title" >
         </div>
 
-
         <div class="mb-3">
             <label for="content" class="form-label">Conteúdo <span class="mandatory"> * </span></label>
-            <textarea class="form-control" name="content" rows="5" required></textarea>
+            <textarea class="form-control" id="summernote" name="content" rows="5" required>{{ old('content', $news->content ?? '') }}</textarea>
         </div>
 
         <div class="mb-3">
@@ -36,7 +35,12 @@
 
         <div class="mb-3">
             <label for="image" class="form-label">Imagem</label>
-            <input type="file" class="form-control" name="image">
+            <input type="file" class="form-control" name="image[]" multiple>            
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Arquivos</label>
+            <input type="file" class="form-control" name="file[]" accept=".pdf,.doc,.docx,.xls,.xlsx,.odt,.txt" multiple>            
         </div>
 
         <div class="form-check mb-3">
@@ -60,4 +64,5 @@
         <button type="submit" class="btn btn-success">Salvar</button>
     </form>
 </div>
+
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.dashboard2')
 
 @section('content')
 <div class="container py-5">
@@ -24,8 +24,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="content" class="form-label">Conteúdo</label>
-            <textarea class="form-control" name="content" rows="5" required>{{ $news->content }}</textarea>
+            <label for="content" class="form-label">Conteúdo <span class="mandatory"> * </span></label>
+            <textarea class="form-control" id="summernote" name="content" rows="5" required>{{ old('content', $news->content ?? '') }}</textarea>
         </div>
 
         <div class="mb-3">
@@ -35,11 +35,27 @@
 
         <div class="mb-3">
             <label for="image" class="form-label">Imagem</label>
-            <input type="file" class="form-control" name="image">
-            @if($news->getFirstMediaUrl('default'))
-                <img src="{{ $news->getFirstMediaUrl('default') }}" class="img-fluid mt-2" style="max-height: 150px;">
-            @endif
-        </div>
+            <input type="file" class="form-control" name="image[]" multiple>
+            @if($news->getMedia('default')->count())
+            <div class="mt-3 d-flex flex-wrap gap-2">
+                @foreach($news->getMedia('default') as $media)
+                    <img src="{{ $media->getUrl() }}" class="img-thumbnail" style="max-height: 150px;">
+                @endforeach
+            </div>
+        @endif
+        </div>  
+        
+        <div class="mb-3">
+            <label for="image" class="form-label">Arquivos</label>
+            <input type="file" class="form-control" name="file[]" multiple>
+            @if($news->getMedia('files')->count())
+            <div class="mt-3 d-flex flex-wrap gap-2">
+                @foreach($news->getMedia('files') as $media)
+                    <a href="{{ $media->getUrl() }}" class="img-thumbnail">{{ $media->name}}</a> 
+                @endforeach
+            </div>
+        @endif
+        </div> 
 
         <div class="form-check mb-3">
             <input type="checkbox" class="form-check-input" id="toggleContent" name="displayed"  @checked(old('displayed', $news->displayed ?? false))>
@@ -58,7 +74,6 @@
                 @endforeach                
             </select>
         </div>
-
 
         <button type="submit" class="btn btn-primary">Atualizar</button>
     </form>

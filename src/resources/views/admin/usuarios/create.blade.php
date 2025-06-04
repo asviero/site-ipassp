@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('admin.dashboard2')
 
 @section('content')
 <div class="container py-5">
-    <h1>Cadastrar Usuário</h1>
+    <h1>Novo Usuário</h1>
 
     @if(session('success'))
         <div class="alert alert-success">

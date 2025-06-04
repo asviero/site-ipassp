@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pages;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePagesRequest;
 
@@ -29,7 +30,8 @@ class PagesController extends Controller
     public function create()
     {
         $pages = Pages::all();
-        return view('admin.pages.create', compact('pages'));
+        $menu = Menu::all();
+        return view('admin.pages.create', compact('pages', 'menu'));
     }
 
     /**
@@ -45,6 +47,7 @@ class PagesController extends Controller
             'slug',
             'parent_id',
             'order',
+            'menu_id'
         ]);
 
         // Define o ID do usuário autenticado, se aplicável
@@ -52,7 +55,26 @@ class PagesController extends Controller
         $data['displayed'] = $request->has('displayed'); // retorna true ou false
 
         // Cria a nova página com os dados fornecidos
-        Pages::create($data);
+        $page = Pages::create($data);
+
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $file) {
+                if ($file->isValid()) {
+                    $page->addMedia($file)->toMediaCollection('default');
+                }
+            }
+        }
+
+
+        if ($request->hasFile('file')) {            
+        
+            foreach ($request->file('file') as $file) {
+                if ($file->isValid()) {
+                    $page->addMedia($file)->toMediaCollection('files');
+                }
+            }
+        }
 
         // Redireciona com uma mensagem de sucesso
         return redirect()->route('admin.paginas.create')->with('success', 'Página criada com sucesso.');        
@@ -72,7 +94,8 @@ class PagesController extends Controller
     public function edit(Pages $pagina)
     {
         $pagesParent = Pages::all();
-        return view('admin.pages.edit', ['page'=> $pagina, 'parent'=>$pagesParent]);
+        $menu = Menu::all();
+        return view('admin.pages.edit', ['page'=> $pagina, 'parent'=>$pagesParent, 'menu'=>$menu]);
         //
     }
 
@@ -99,6 +122,19 @@ class PagesController extends Controller
         if (!$pagina->update($data)){
             return back()->withErrors(['campo' => 'Ocorreu um erro ao processar sua solicitação.'])->withInput();
         }
+
+
+        if ($request->hasFile('image')) {
+            // (opcional) limpa a coleção anterior, se quiser sobrescrever todas as imagens
+            $pagina->clearMediaCollection('default');
+        
+            foreach ($request->file('image') as $image) {
+                if ($image->isValid()) {
+                    $pagina->addMedia($image)->toMediaCollection('default');
+                }
+            }
+        }
+
 
         // Redireciona com uma mensagem de sucesso
         return redirect()->route('admin.paginas.index')->with('success', 'Página atualizada com sucesso.'); 

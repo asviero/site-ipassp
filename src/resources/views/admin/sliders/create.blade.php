@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.dashboard2')
 
 @section('content')
 <div class="container py-5">
@@ -14,7 +14,7 @@
         </div>
     @endif
     
-    <h1>New Slider</h1>
+    <h1>Novo Slider</h1>
 
     <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
         @csrf

@@ -40,8 +40,25 @@ class AdminNewsController extends Controller
         $news->updated_by = auth()->id();
         $news->save();
 
+        // if ($request->hasFile('image')) {
+        //     $news->addMediaFromRequest('image')->toMediaCollection('default');
+        // }
+
         if ($request->hasFile('image')) {
-            $news->addMediaFromRequest('image')->toMediaCollection('default');
+            foreach ($request->file('image') as $file) {
+                if ($file->isValid()) {
+                    $news->addMedia($file)->toMediaCollection('default');
+                }
+            }
+        }
+
+        if ($request->hasFile('file')) {            
+        
+            foreach ($request->file('file') as $file) {
+                if ($file->isValid()) {
+                    $news->addMedia($file)->toMediaCollection('files');
+                }
+            }
         }
 
         return redirect()->route('admin.noticias.index')->with('success', 'Notícia criada com sucesso.');
@@ -62,10 +79,34 @@ class AdminNewsController extends Controller
 
         $noticia->update($data);
 
+        // if ($request->hasFile('image')) {
+        //     $noticia->clearMediaCollection('default');
+        //     $noticia->addMediaFromRequest('image')->toMediaCollection('default');
+        // }
+
         if ($request->hasFile('image')) {
+            // (opcional) limpa a coleção anterior, se quiser sobrescrever todas as imagens
             $noticia->clearMediaCollection('default');
-            $noticia->addMediaFromRequest('image')->toMediaCollection('default');
+        
+            foreach ($request->file('image') as $image) {
+                if ($image->isValid()) {
+                    $noticia->addMedia($image)->toMediaCollection('default');
+                }
+            }
         }
+
+        if ($request->hasFile('file')) {
+            // (opcional) limpa a coleção anterior, se quiser sobrescrever todas as imagens
+            $noticia->clearMediaCollection('files');
+        
+            foreach ($request->file('file') as $file) {
+                if ($file->isValid()) {
+                    $noticia->addMedia($file)->toMediaCollection('files');
+                }
+            }
+        }
+
+       
 
         return redirect()->route('admin.noticias.index')->with('success', 'Notícia atualizada.');
     }

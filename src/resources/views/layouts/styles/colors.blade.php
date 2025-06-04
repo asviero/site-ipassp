@@ -23,4 +23,10 @@
         color: #005c99 !important;
     }
 
+   div .card :hover{
+        background-color:rgb(134, 78, 82);
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+
 </style>

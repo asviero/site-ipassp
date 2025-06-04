@@ -21,6 +21,8 @@ class StoreNewsRequest extends FormRequest
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'published_at' => 'nullable|date',
+            'file.*' => 'nullable|array',       
+            'file.*' => 'file|max:1024',
         ];
     }
 

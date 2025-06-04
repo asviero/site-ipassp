@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('admin.dashboard2')
 
 @section('content')
 <div class="container py-5">
@@ -62,7 +62,7 @@
             <label for="image" class="form-label">Arquivo</label>
             <input type="file" class="form-control" name="file_path" 
             accept=".pdf, .docx, .odt, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.oasis.opendocument.text"
-            required>
+            required>           
         </div>
 
         <div class="form-check mb-3">
