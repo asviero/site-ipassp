@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PublicNoticeController extends Controller
 {
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'editais');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -46,8 +52,8 @@ class PublicNoticeController extends Controller
 
         // Lida com upload do arquivo
         if ($request->hasFile('file_path')) {
-            $path = $request->file('file_path')->store('public/public_notices');
-            $validated['file_path'] = str_replace('public/', '', $path);  // remove o "public/" para o asset()
+            $path = $request->file('file_path')->store('public_notices');
+            $validated['file_path'] = $path;
         }
 
         // Cria o registro

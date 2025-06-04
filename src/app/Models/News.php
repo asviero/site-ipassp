@@ -10,7 +10,7 @@ class News extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
-    protected $fillable = ['title', 'content', 'updated_by', 'published_at', 'displayed'];
+    protected $fillable = ['title', 'content', 'updated_by', 'published_at', 'displayed', 'category_id'];
 
     public function show(News $news)
     {
@@ -20,5 +20,10 @@ class News extends Model implements HasMedia
     public function updatedBy()
     {
         return $this->belongsTo(User::class, 'updated_by');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

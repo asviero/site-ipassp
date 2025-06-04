@@ -15,21 +15,34 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
 </head>
 <body class="full-height">
+
+<header class="bg-light p-3">
+    <div class="container">
+        <h1>Painel Administrativo</h1>
+    </div>
+</header>
     <div class="d-flex full-height">
         <!-- Sidebar -->
         <div class="bg-dark text-white p-3 style="width: 250px;">
             <h4 class="mb-4">Admin IPASSP</h4>
             <ul class="nav flex-column">
-                <li class="nav-item"><a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
-                <li class="nav-item"><a href="{{ route('admin.noticias.index') }}" class="nav-link text-white">Notícias</a></li>
-                <li class="nav-item"><a href="{{ route('admin.slider.index') }}" class="nav-link text-white">Slider</a></li>
-                <li class="nav-item"><a href="{{ route('admin.editais.index') }}" class="nav-link text-white">Editais</a></li>
-                <li class="nav-item"><a href="{{ route('admin.usuarios.index') }}" class="nav-link text-white">Usuários</a></li>
+            
+                <li class="nav-item{{ ($menu ?? '') === 'home' ? '-active' : '' }}"><a href="{{ route('admin.dashboard') }}" class="nav-link text-white">Dashboard</a></li>
+                <li class="nav-item{{ ($menu ?? '') === 'paginas' ? '-active' : '' }}"><a href="{{ route('admin.paginas.index') }}" class="nav-link text-white">Páginas</a></li>
+                <li class="nav-item{{ ($menu ?? '') === 'noticias' ? '-active' : '' }}"><a href="{{ route('admin.noticias.index') }}" class="nav-link text-white">Notícias</a></li>
+                <li class="nav-item{{ ($menu ?? '') === 'slider' ? '-active' : '' }}"><a href="{{ route('admin.slider.index') }}" class="nav-link text-white">Slider</a></li>
+                <li class="nav-item{{ ($menu ?? '') === 'editais' ? '-active' : '' }}"><a href="{{ route('admin.editais.index') }}" class="nav-link text-white">Editais</a></li>
+                <li class="nav-item{{ ($menu ?? '') === 'usuarios' ? '-active' : '' }}"><a href="{{ route('admin.usuarios.index') }}" class="nav-link text-white">Usuários</a></li>
             </ul>
         </div>
 
+
+
+
         <!-- Conteúdo -->
         <div class="flex-grow-1 p-4 full-height">
+
+        {{ $menu }}
             @auth
                 <div class="d-flex justify-content-end mb-3">
                     <div class="dropdown">
@@ -79,5 +92,11 @@
     });
   });
 </script>
+<!-- Rodapé -->
+<footer class="bg-light text-center py-3 mt-auto">
+    <div class="container">
+        <p>&copy; {{ date('Y') }} IPASSP-SM. Todos os direitos reservados.</p>
+    </div>
+</footer>
 </body>
 </html>

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'editais');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -79,7 +85,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $categoria)
     {
-        //
+
         $categoria->delete();
 
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria removida.');

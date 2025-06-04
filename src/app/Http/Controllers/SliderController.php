@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class SliderController extends Controller
 {
+    public function __construct()
+    {
+        // Compartilha a variável $menu com todas as views deste controller
+        view()->share('menu', 'slider');
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -79,8 +85,6 @@ class SliderController extends Controller
     {
         $data = $request->only('title', 'content');
         $data['user_id'] = auth()->id(); // Adiciona o ID do usuário que atualizou
-
-        echo $data['user_id'];
 
         $slider->update($data);
 

@@ -6,7 +6,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicNoticeController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\MenuController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SliderController::class, 'show'])->name('home');
@@ -36,10 +39,14 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     Route::resource('editais', PublicNoticeController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
 
+    Route::resource('paginas', PagesController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
+
     Route::resource('categorias', CategoryController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
 
+    Route::resource('menu', MenuController::class)->only(['index', 'create', 'edit', 'store', 'destroy', 'update']);
+
     // Gerenciamento de Usuários (opcional - mostrar, editar e deletar usuários)
-    Route::resource('usuarios', AdminUserController::class)->only(['index', 'edit', 'update', 'destroy']);
+    Route::resource('usuarios', AdminUserController::class)->only(['index', 'edit', 'update', 'destroy', 'store', 'create']);
 });
 
 // Botões Header
