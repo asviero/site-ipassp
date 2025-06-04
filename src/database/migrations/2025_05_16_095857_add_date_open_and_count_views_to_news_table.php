@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('news', function (Blueprint $table) {
             $table->dateTime('published_at')->nullable();
-            $table->unsignedBigInteger('views')->default(0)->after('title');            
+            $table->unsignedBigInteger('views')->default(0)->after('title');
             $table->boolean('displayed')->default(true);
         });
     }

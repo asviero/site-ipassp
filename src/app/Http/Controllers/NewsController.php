@@ -71,15 +71,15 @@ class NewsController extends Controller
 
         return view('noticias', compact('news'));
     }
-    
+
     public function search(Request $request)
     {
         $query = $request->input('q');
 
-        $news = News::where('title', 'like', '%' . $query . '%')
-                    ->orWhere('content', 'like', '%' . $query . '%')
-                    ->latest()
-                    ->paginate(5);
+        $news = News::where('title', 'like', '%'.$query.'%')
+            ->orWhere('content', 'like', '%'.$query.'%')
+            ->latest()
+            ->paginate(5);
 
         return view('news.search', compact('news', 'query'));
     }

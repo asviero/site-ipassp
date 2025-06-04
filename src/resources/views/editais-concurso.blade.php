@@ -38,6 +38,12 @@
         <h3 class="text-center mt-5 p-3 bg-dark text-white rounded shadow">
             Editais Concurso Público
         </h3>
+
+        @isset($year)
+            <h4 class="text-center mt-2">
+                Ano selecionado: <span class="badge bg-dark">{{ $year }}</span>
+            </h4>
+        @endisset
     </div>
 
     <!-- Datepicker -->
@@ -59,7 +65,19 @@
             <div class="mes-container mb-4" data-mes="{{ $numero }}">
                 <h4 class="bg-light p-2 rounded shadow-sm">{{ $nome }}</h4>
                 <div class="editais-lista" id="mes-{{ $numero }}">
-                    {{-- Editais serão preenchidos via JavaScript --}}
+                    @if(isset($editais[$numero]))
+                        @foreach ($editais[$numero] as $edital)
+                            <div class="card mb-2 p-2">
+                                <h5>{{ $edital->label }} - Nº {{ $edital->number }}/{{ $edital->year }}</h5>
+                                <p class="mb-0">{{ $edital->short_desc }}</p>
+                                <a href="{{ asset('storage/' . $edital->file_path) }}" target="_blank" class="btn btn-sm btn-primary mt-2">
+                                    Visualizar Edital
+                                </a>
+                            </div>
+                        @endforeach
+                    @else
+                        <p class="text-muted">Nenhum edital neste mês.</p>
+                    @endif
                 </div>
             </div>
         @endforeach
@@ -83,13 +101,13 @@
             minViewMode: 2,
             autoclose: true,
             language: 'pt-BR',
-            startDate: '2020',
-            endDate: '2024'
+            startDate: '2019',
+            endDate: '2022'
         });
 
         $('#datepicker').on('changeDate', function (e) {
             const anoSelecionado = e.format('yyyy');
-            console.log("Ano selecionado:", anoSelecionado);
+            window.location.href = `http://localhost/editais/concurso_publico/${anoSelecionado}`;
         });
     });
 </script>

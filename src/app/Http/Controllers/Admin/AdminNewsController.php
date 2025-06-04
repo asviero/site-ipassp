@@ -10,7 +10,7 @@ class AdminNewsController extends Controller
 {
     public function index()
     {
-        $news = News::all();// <-- importante
+        $news = News::all(); // <-- importante
 
         return view('admin.noticias.index', compact('news'));
     }
@@ -31,7 +31,7 @@ class AdminNewsController extends Controller
         $data['displayed'] = $request->has('displayed'); // retorna true ou false
         $news = News::create($data);
         $news->updated_by = auth()->id(); // Adiciona o ID do usuário que atualizou
-        
+
         $news->save();
 
         if ($request->hasFile('image')) {

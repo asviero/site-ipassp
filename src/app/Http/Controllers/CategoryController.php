@@ -13,6 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $cat = Category::all();
+
         return view('admin.categories.index', compact('cat'));
     }
 
@@ -35,7 +36,7 @@ class CategoryController extends Controller
         ]);
 
         $data = $request->only('label', 'slug', 'observation');
-       
+
         $cat = Category::create($data);
 
         $cat->save();
@@ -66,10 +67,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $categoria)
     {
         $data = $request->only('label', 'slug', 'observation');
-        
-        //to do validation 
-       $categoria->update($data);
 
+        // to do validation
+        $categoria->update($data);
 
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria atualizada.');
     }
@@ -81,6 +81,7 @@ class CategoryController extends Controller
     {
         //
         $categoria->delete();
+
         return redirect()->route('admin.categorias.index')->with('success', 'Categoria removida.');
     }
 }
