@@ -23,10 +23,15 @@
         color: #005c99 !important;
     }
 
-   div .card :hover{
-        background-color:rgb(134, 78, 82);
-        opacity: 0.7;
-        transform: scale(1.05);
+
+    .card {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
 
 </style>

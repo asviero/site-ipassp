@@ -62,17 +62,24 @@
         @endphp
 
         @foreach ($meses as $numero => $nome)
-            <div class="mes-container mb-4" data-mes="{{ $numero }}">
-                <h4 class="bg-light p-2 rounded shadow-sm">{{ $nome }}</h4>
+            <div class="mes-container mb-4 border rounded p-2" data-mes="{{ $numero }}">
+                <h4 class="bg-light p-2 rounded shadow-sm text-decoration-underline">{{ $nome }}</h4>
                 <div class="editais-lista" id="mes-{{ $numero }}">
                     @if(isset($editais[$numero]))
                         @foreach ($editais[$numero] as $edital)
-                            <div class="card mb-2 p-2">
-                                <h5>{{ $edital->label }} - Nº {{ $edital->number }}/{{ $edital->year }}</h5>
-                                <p class="mb-0">{{ $edital->short_desc }}</p>
-                                <a href="{{ asset('storage/' . $edital->file_path) }}" target="_blank" class="btn btn-sm btn-primary mt-2">
-                                    Visualizar Edital
-                                </a>
+                            <div class="card mb-2 p-2 shadow-sm border-0 rounded-3">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <h6 class="mb-0 fw-semibold text-dark">
+                                        {{ $edital->published_on->format('d/m/Y') }} -
+                                        {{ $edital->label }} - Nº {{ $edital->number }}/{{ $edital->year }}
+                                    </h6>
+                                    <a href="{{ asset('storage/' . $edital->file_path) }}" download class="btn btn-sm btn-outline-secondary">
+                                        Download
+                                    </a>
+                                </div>
+                                <p class="mb-1 small text-muted">
+                                    {{ $edital->short_desc }}
+                                </p>
                             </div>
                         @endforeach
                     @else
