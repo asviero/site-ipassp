@@ -22,7 +22,7 @@
                         </a>
                     </h5>
                     <p class="card-text">
-                        {{ Str::limit($item->content, 120) }}
+                        {{ Str::limit(strip_tags(html_entity_decode($item->content)), 120) }}
                     </p>
                     <a href="{{ route('news.show', $item) }}" class="mt-auto btn btn-outline-primary btn-sm">
                         Leia mais

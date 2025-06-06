@@ -11,7 +11,7 @@
 <body class="bg-gray-100">
     @include('layouts.header')
     
-    <main class="container py-4">
+    <main>
         @yield('content')
     </main>
 
